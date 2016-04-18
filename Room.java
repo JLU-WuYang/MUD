@@ -4,17 +4,35 @@ import java.util.*;
 public class Room {
 
 	private HashMap<CommonContent.DIRECTION, Room> neighbor = new HashMap<CommonContent.DIRECTION, Room>();
-
+        private HashMap<String,NPC>npcList=new  HashMap<String,NPC>();
+       //不合理，初始化房间的时候
+        void creatNpc(String name,String word,String task,int hp,int max_hp){
+        NPC a=new NPC();
+        a.setName(name);
+        a.setword(word);
+        a.sethp(hp);
+        a.setmax_hp(max_hp);
+        a.setTask(task);
+        npcList.put(a.getName(), a);
+        }
+        public HashMap<CommonContent.DIRECTION, Room> getNeighbor(){
+        return neighbor;
+        }
 	void setRoom(CommonContent.DIRECTION d, Room r) {
 		neighbor.put(d, r);
 		// assert r.getRoom(d) == this;
 	}
-
+        //双向
+void setnewRoom(CommonContent.DIRECTION d, Room r) {
+		neighbor.put(d, r);
+		// assert r.getRoom(d) == this;
+                r.getNeighbor().put(StaticFunctions.getReverseDirectionEn(d), this);
+    }
 	public Room getRoom(CommonContent.DIRECTION d) {
 		return neighbor.get(d);
 
 	}
-
+        private int npcNum;
 	private String roomDescription;
 	private String roomLooking;
 	private String roomId;
@@ -33,6 +51,7 @@ public class Room {
 	}
 
 	public void enter(Player player, CommonContent.DIRECTION direction) {
+            
 		Collection<Player> c = playerList.values();
 		for (Iterator<Player> it = c.iterator(); it.hasNext();) {
 			Player tempPlayer = (Player) it.next();
@@ -41,6 +60,7 @@ public class Room {
 					+ "面走了过来。");
 		}
 		playerList.put(player.getId(), player);
+                player.setLocation(this.roomId);
 	}
 	public void removePlayer(Player player){
 	//用户退出后，清除用户在列表中内容，通知房间内其他玩家
@@ -84,10 +104,17 @@ public class Room {
 	public void SetRoomName(String roomName) {
 		this.roomName = roomName;
 	}
-
-	public String getRoomName() {
+        public String getRoomName() {
 		return roomName;
 	}
+        public void setNpcNumber(int number) {
+		this.npcNum = number;
+	}
+
+	public int getNpcNumber() {
+		return npcNum;
+	}
+	
 
 	/*public String getRoomLooking() {
 		return roomLooking;
@@ -117,7 +144,15 @@ public class Room {
 		// 房间出口
 		roomLooking += getChuKou() + "\t";
 		// 房间npc
-
+		Collection<NPC> c = npcList.values();
+		for (Iterator<NPC> it = c.iterator(); it.hasNext();) {
+                   
+			NPC tempNPC = (NPC) it.next();
+			roomLooking = roomLooking + "NPC:\n"+"姓名："+tempNPC.getName()+"\t";
+                        roomLooking=roomLooking+"血量："+tempNPC.gethp()+"\t";
+                        roomLooking = roomLooking + "介绍："+tempNPC.getword()+"\t";
+                        roomLooking = roomLooking +"任务："+tempNPC.getTask()+"\t";
+		}
 		// 房间player
 		roomLooking += listRoomPlayers();
 		// 房间obj

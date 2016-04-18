@@ -10,7 +10,7 @@ public class Client extends JFrame {
 	private JTextArea screen;
 	private JTextField input;
 	private JButton connection;
-//I
+
 	private Socket socket;
 	private BufferedReader in;
 	private BufferedWriter out;

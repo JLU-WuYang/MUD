@@ -4,7 +4,19 @@ import java.util.Map;
 
 public class RoomManagement {
 	static Map<String, Room> cityMap = new HashMap<String, Room>();
-
+        public static void creatRoom(String id,String name,String description,int number){
+                Room room= new Room();	
+		room.setRoomId(id);
+		room.SetRoomName(name);
+		room.setDescription(description);
+                room.setNpcNumber(number);
+                cityMap.put(id, room);
+        }
+        
+        public static void creatLink(){
+        cityMap.get("yangzhou_guangchang").setnewRoom(CommonContent.DIRECTION.NORTH, cityMap.get("yangzhou_beidajie1"));
+        
+        }
 	public static void creatRooms() {
 		/*扬州*/
 		Room room_guangchang = new Room();	
@@ -232,5 +244,6 @@ public class RoomManagement {
 		cityMap.put(room_yanju.getRoomId(), room_yanju);
 		cityMap.put(room_geyuan.getRoomId(), room_geyuan);
 		cityMap.put(room_xiaopangu.getRoomId(), room_xiaopangu);
+                cityMap.put(room_dongdajie1.getRoomId() , room_dongdajie1 );
 	}
 }

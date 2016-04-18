@@ -53,4 +53,30 @@ public class StaticFunctions {
 		}
 		return chinese;
 	}
+        public static CommonContent.DIRECTION  getReverseDirectionEn(CommonContent.DIRECTION direction){
+		
+		switch(direction){
+		case EAST:
+			return CommonContent.DIRECTION.WEST;
+		case WEST:
+			return CommonContent.DIRECTION.EAST;
+		case SOUTH:
+			return CommonContent.DIRECTION.NORTH;
+		case NORTH:
+			return CommonContent.DIRECTION.SOUTH;
+		case NORTHEAST:
+			return CommonContent.DIRECTION.SOUTHWEST;
+		case NORTHWEST:
+			return CommonContent.DIRECTION.SOUTHEAST;
+		case SOUTHEAST:
+			return CommonContent.DIRECTION.NORTHWEST;
+		case SOUTHWEST:
+			return CommonContent.DIRECTION.NORTHEAST;
+		case UP:
+			return CommonContent.DIRECTION.DOWN;
+		case DOWN:
+			return CommonContent.DIRECTION.UP;
+		}
+                return CommonContent.DIRECTION.UP;//have to
+	}
 }

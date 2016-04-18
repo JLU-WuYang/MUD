@@ -1,19 +1,7 @@
 package cn.edu.jlu.ccst.mud;
-public class Player {
+public class Player extends Person{
 
-	private int experience;
-	private int con;
-	private int dex;
-	private int str;
-	private int wis;
-	private int hp, max_hp;
-	private int nl, max_nl;
-	private int jl, max_jl;
-	private String id;
-	private String username;
-	private String party;
-	private String location;
-
+	
 	public Player() {
 		// creat player default value
 	}
@@ -48,7 +36,7 @@ public class Player {
 		}
 	}
 	public void look(String something){
-		if(something.equals(""))
+		if(something.equals("room"))
 			MessageManagement.showToPlayer(this,RoomManagement.cityMap.get(this.location).getRoomLooking());
 		else
 			;
@@ -63,22 +51,5 @@ public class Player {
 		
 		//save添加在这里
 	}
-	public void setLocation(String location){
-		this.location = location;
-	}
-	public String getLocation(){
-		return this.location;
-	}
-	public String getId(){
-		return id;
-	}
-	public void setId(String id){
-		this.id = id;
-	}
-	public String getName(){
-		return this.username;
-	}
-	public void setName(String username){
-		this.username = username;
-	}
+
 }

@@ -6,11 +6,11 @@ public class UserInput {
 		 */
 
 		String[] inputs = inputMessage.split(" ");
-		if (inputs[0].equals("l") || inputs[0].equals("look"))
-			if (inputs.length == 1) {
-				player.look("");
+		if (inputs[0].equals("l") || inputs[0].equals("look")){
+			
+				player.look("room");
 				return;
-			}
+                }	
 		if (inputs[0].equals("quit")) {
 			player.quit();
 			return;

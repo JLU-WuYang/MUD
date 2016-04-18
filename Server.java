@@ -21,6 +21,14 @@ public class Server {
 						socket.getOutputStream()));
 				String inputMessage;
 				Player player = new Player();
+                                out.write("加载房间信息.\t");
+                                out.write("加载房间信息...\t");
+                                out.write("加载房间信息.....\t");
+                                
+                                out.write("加载NPC.\t");
+                                out.write("加载NPC...\t");
+                                out.write("加载NPC.....\t");
+                                out.flush();
 				out.write("欢迎你来到我们的武侠世界！\t");
 				out.write("请输入您的用户名：\n");
 				out.flush();
@@ -44,6 +52,7 @@ public class Server {
 						quit = true;
 						System.out.println(player.getName()+"离开了这个世界。");
 					} 
+                                        System.out.println(inputMessage);
 					UserInput.dealInput(player, inputMessage);
 					
 				}
@@ -63,7 +72,9 @@ public class Server {
 	public static int PORT_NUM = 1888;
 
 	static public void main(String[] args) throws IOException {
-		RoomManagement.creatRooms();
+		loaddata.loadroom();
+                RoomManagement.creatLink();
+                loaddata.loadNPC();
 		ServerSocket serverSocket = new ServerSocket(PORT_NUM);
 		for (;;) {
 			Socket socket = serverSocket.accept();
