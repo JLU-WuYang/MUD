@@ -8,5 +8,11 @@ I change some files .
 - Room.java 定义房间
 - RoomManagement.java 定义管理房间的功能
 - MessageManagement.java 管理给用户的信息,通过channel绑定
-- UseInput.java 接受并处理用户输入
+- UseInput.java 接受并处理用户输入  
+
+You can switch the tags：  
+**tag 1.0**：This is original version which I copy from teacher  
+**tag 1.1**：The lastest version  
+
+The Map isn't finished...  
 
